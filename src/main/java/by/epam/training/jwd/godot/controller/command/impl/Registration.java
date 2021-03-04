@@ -26,7 +26,7 @@ public class Registration implements Command {
 			userService.registration(new RegistrationInfo(login, password, email));
 			response.sendRedirect("Controller?command=gotoindexpage&message=registered");
 		} catch (ServiceException e) {
-			response.sendRedirect("Controller?command=gotoindexpage&message=registration error");
+			response.sendRedirect(String.format("Controller?command=gotoregistrationpage&message=%s", e.getMessage()));
 		}
 		
 	}

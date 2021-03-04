@@ -34,7 +34,8 @@ public class SigningIn implements Command {
 			user = userService.authorization(new SignInInfo(login, password));
 			
 			if (user == null) {
-				response.sendRedirect("main_page.jsp");
+
+				response.sendRedirect("Controller?command=gotologinationpage&message=nosuchuser");
 				return;
 			}
 

@@ -42,7 +42,7 @@ public class Controller extends HttpServlet {
 		name = request.getParameter("command");
 		command = provider.takeCommand(name);
 
-		LOGGER.info(String.format("%s, %s", request.getMethod(), name));
+		LOGGER.info(String.format("%s, %s\n", request.getMethod(), name));
 
 		command.execute(request, response);
 	}

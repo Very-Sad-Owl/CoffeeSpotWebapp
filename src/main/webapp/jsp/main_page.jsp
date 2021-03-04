@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GoDot</title>
-<link rel='stylesheet' href='../../css/main_style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='../css/main_style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <!-- <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
 </head>
@@ -19,7 +19,7 @@
 		<div class="site-branding">
 			<h1 class="site-title">
 				<a href="Controller?command=gotoindexpage" rel="home">
-					<img alt="Logo" src="../../resources/image/logo.png"
+					<img alt="Logo" src="../resources/image/logo.png"
 					width="20%" height="20%">
 				</a>
 			</h1>
@@ -42,8 +42,8 @@
 						<li><a href="coming soon ..">Account</a></li>
 					</c:if>
 					<c:if test="${sessionScope.auth == false || sessionScope.auth == null}">
-						<li><a href="Controller?command=logination">Login</a></li>
-						<li><a href="Controller?command=registration">Register</a></li>
+						<li><a href="Controller?command=gotologinationpage">Login</a></li>
+						<li><a href="Controller?command=gotoregistrationpage">Register</a></li>
 					</c:if>
 
 				</ul>
@@ -69,9 +69,9 @@
 	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </div>
 <!-- #page -->
-<script src='../../js/jquery.js'></script>
-<script src='../../js/plugins.js'></script>
-<script src='../../js/scripts.js'></script>
-<script src='../../js/masonry.pkgd.min.js'></script>
+<script src='../js/jquery.js'></script>
+<script src='../js/plugins.js'></script>
+<script src='../js/scripts.js'></script>
+<script src='../js/masonry.pkgd.min.js'></script>
 </body>
 </html>

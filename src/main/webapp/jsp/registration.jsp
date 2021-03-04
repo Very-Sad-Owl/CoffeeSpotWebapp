@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;
     charset=utf-8"
 	pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<link href="../../css/logination_style.css" rel="stylesheet" type="text/css">
+<link href="../css/logination_style.css" rel="stylesheet" type="text/css">
 <body>
 
 <!-- <div class="fullscreen-bg"> -->
@@ -21,6 +22,9 @@
 		<input type="email" name="email" placeholder="email" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Give me my coffee!</button>
     </form>
+</div>
+<div class = "error">
+    <c:out value="${param.message}" />
 </div>
 </body>
 

@@ -13,7 +13,7 @@ public class GoToLoginationPage implements Command {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/logination.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/logination.jsp");
         requestDispatcher.forward(request, response);
 
     }

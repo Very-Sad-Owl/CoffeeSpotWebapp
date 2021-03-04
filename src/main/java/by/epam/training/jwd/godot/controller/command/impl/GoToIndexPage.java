@@ -13,7 +13,7 @@ public class GoToIndexPage implements Command {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/jsp/main_page.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/main_page.jsp");
 			requestDispatcher.forward(request, response);
 
 	}
