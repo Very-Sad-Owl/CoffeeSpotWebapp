@@ -1,5 +1,7 @@
 package by.epam.training.jwd.godot.service.validator;
 
+import by.epam.training.jwd.godot.service.validator.exception.InvalidSigningUuDataException;
+
 public class UserValidator {
     private static final String LOGIN_PATTERN = "^.[^\\s\\W]{3,20}";
     private static final String PASSWORD_PATTERN = "^.{6,20}";
@@ -7,15 +9,21 @@ public class UserValidator {
 
     private UserValidator(){}
 
-    public static boolean isLoginValid(String login){
-        return login != null && login.matches(LOGIN_PATTERN);
+    public static void isLoginValid(String login) throws InvalidSigningUuDataException {
+        if (login == null || !login.matches(LOGIN_PATTERN)){
+            throw new InvalidSigningUuDataException("Invalid login");
+        }
     }
 
-    public static boolean isPasswordValid(String password){
-        return password != null && password.matches(PASSWORD_PATTERN);
+    public static void isPasswordValid(String password) throws InvalidSigningUuDataException {
+        if (password == null || !password.matches(PASSWORD_PATTERN)){
+            throw new InvalidSigningUuDataException("Invalid password");
+        }
     }
 
-    public static boolean isEmailValid(String email){
-        return email != null && email.matches(EMAIL_PATTERN);
+    public static void isEmailValid(String email) throws InvalidSigningUuDataException {
+        if (email == null || !email.matches(EMAIL_PATTERN)){
+            throw new InvalidSigningUuDataException("Invalid email");
+        }
     }
 }

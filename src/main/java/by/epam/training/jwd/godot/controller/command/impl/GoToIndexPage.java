@@ -1,6 +1,7 @@
 package by.epam.training.jwd.godot.controller.command.impl;
 
 import by.epam.training.jwd.godot.controller.command.Command;
+import by.epam.training.jwd.godot.controller.command.resource.CommandUrlPath;
 
 import java.io.IOException;
 
@@ -13,7 +14,7 @@ public class GoToIndexPage implements Command {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("jsp/main_page.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher(CommandUrlPath.INDEXPAGE);
 			requestDispatcher.forward(request, response);
 
 	}

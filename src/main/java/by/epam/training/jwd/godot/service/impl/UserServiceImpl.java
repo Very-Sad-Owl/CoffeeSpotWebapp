@@ -9,6 +9,7 @@ import by.epam.training.jwd.godot.dao.UserDAO;
 import by.epam.training.jwd.godot.service.exception.ServiceException;
 import by.epam.training.jwd.godot.service.UserService;
 import by.epam.training.jwd.godot.service.validator.UserValidator;
+import by.epam.training.jwd.godot.service.validator.exception.InvalidSigningUuDataException;
 
 public class UserServiceImpl implements UserService {
 
@@ -29,10 +30,12 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean registration(RegistrationInfo regInfo) throws ServiceException {
 
-		if (UserValidator.isLoginValid(regInfo.getLogin()) ||
-				UserValidator.isPasswordValid(regInfo.getPassword()) ||
-				UserValidator.isEmailValid(regInfo.getEmail())) {
-			throw new ServiceException("Wrong login or password.");
+		try {
+			UserValidator.isLoginValid(regInfo.getLogin());
+			UserValidator.isPasswordValid(regInfo.getPassword());
+			UserValidator.isEmailValid(regInfo.getEmail());
+		} catch (InvalidSigningUuDataException e) {
+			throw new ServiceException(e.getMessage());
 		}
 
 		DAOProvider provider = DAOProvider.getInstance();
@@ -41,7 +44,7 @@ public class UserServiceImpl implements UserService {
 		try {
 			userDAO.registration(regInfo);
 		} catch (DAOException e) {
-			throw new ServiceException("Invalid registration data.");
+			throw new ServiceException("Registration failed. Please, try again later.");
 		}
 
 		return true;

@@ -2,7 +2,6 @@ package by.epam.training.jwd.godot.controller.command.impl;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +14,11 @@ import by.epam.training.jwd.godot.service.exception.ServiceException;
 import by.epam.training.jwd.godot.service.ServiceProvider;
 import by.epam.training.jwd.godot.service.UserService;
 
+import static by.epam.training.jwd.godot.controller.command.resource.CommandUrlPath.*;
+import static by.epam.training.jwd.godot.controller.command.resource.CommandParam.*;
+import static by.epam.training.jwd.godot.controller.command.resource.RequestParam.*;
+import static by.epam.training.jwd.godot.controller.command.resource.SessionAttr.*;
+
 public class SigningIn implements Command {
 
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -22,29 +26,27 @@ public class SigningIn implements Command {
 		String login;
 		String password;
 
-		login = request.getParameter("login");
-		password = request.getParameter("password");
+		login = request.getParameter(LOGIN);
+		password = request.getParameter(PASSWORD);
 
 		ServiceProvider provider = ServiceProvider.getInstance();
 		UserService userService = provider.getUserService();
 
 		User user = null;
-		RequestDispatcher requestDispatcher = null;
 		try {
 			user = userService.authorization(new SignInInfo(login, password));
 			
 			if (user == null) {
-
-				response.sendRedirect("Controller?command=gotologinationpage&message=nosuchuser");
+				response.sendRedirect(String.format(GOTOLOGINPAGE_WITH_MSG,NONEXISTING_USER));
 				return;
 			}
 
 			HttpSession session = request.getSession(true);
-			session.setAttribute("auth", true);
-			response.sendRedirect("Controller?command=gotoindexpage");
+			session.setAttribute(AUTHORIZATION, true);
+			response.sendRedirect(GOTOINDEXPAGE);
 
 		} catch (ServiceException e) {
-			response.sendRedirect(String.format("Controller?command=gotoindexpage&message=%s", e.getMessage()));
+			response.sendRedirect(String.format(GOTOLOGINPAGE_WITH_MSG, e.getMessage()));
 		}
 
 	}
