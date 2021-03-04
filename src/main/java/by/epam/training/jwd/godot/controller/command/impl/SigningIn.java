@@ -44,7 +44,7 @@ public class SigningIn implements Command {
 			response.sendRedirect("Controller?command=gotoindexpage");
 
 		} catch (ServiceException e) {
-			response.sendRedirect("Controller?command=gotoindexpage&message=servicefail");
+			response.sendRedirect(String.format("Controller?command=gotoindexpage&message=%s", e.getMessage()));
 		}
 
 	}

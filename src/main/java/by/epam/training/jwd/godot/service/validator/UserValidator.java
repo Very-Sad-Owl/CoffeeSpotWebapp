@@ -1,8 +1,8 @@
 package by.epam.training.jwd.godot.service.validator;
 
 public class UserValidator {
-    private static final String LOGIN_PATTERN = "^.[^\\s\\W]{3,20}\\n";
-    private static final String PASSWORD_PATTERN = "^.{6,20}\\n";
+    private static final String LOGIN_PATTERN = "^.[^\\s\\W]{3,20}";
+    private static final String PASSWORD_PATTERN = "^.{6,20}";
     private static final String EMAIL_PATTERN = "[\\w+\\-.]+@[a-z\\d\\-]+(\\.[a-z\\d\\-]+)*\\.[a-z]+";
 
     private UserValidator(){}

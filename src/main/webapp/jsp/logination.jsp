@@ -13,10 +13,11 @@
         <button type="submit" class="btn btn-primary btn-block btn-large">Give me my coffee!</button>
     </form>
   <div class = "message">
-    <c:set var="test" value="nosuchuser"/>
-    <c:if test="${test==param.message}">
-      <br><p id = "error">There is no such user.</p>
-    </c:if>
+    <%--<c:set var="test" value="nosuchuser"/>--%>
+    <%--<c:if test="${test==param.message}">--%>
+      <%--<br><p id = "error">There is no such user.</p>--%>
+    <%--</c:if>--%>
+      <br><p id = "error">${param.message}</p>
   </div>
 </div>
 

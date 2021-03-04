@@ -14,10 +14,6 @@ public class UserServiceImpl implements UserService {
 
 	public User authorization(SignInInfo info) throws ServiceException {
 
-		if (UserValidator.isLoginValid(info.getLogin()) && UserValidator.isPasswordValid(info.getPassword())) {
-			throw new ServiceException("Wrong login or password.");
-		}
-		
 		DAOProvider provider = DAOProvider.getInstance();
         UserDAO userDAO = provider.getUserdao();
         
@@ -33,8 +29,8 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean registration(RegistrationInfo regInfo) throws ServiceException {
 
-		if (UserValidator.isLoginValid(regInfo.getLogin()) &&
-				UserValidator.isPasswordValid(regInfo.getPassword()) &&
+		if (UserValidator.isLoginValid(regInfo.getLogin()) ||
+				UserValidator.isPasswordValid(regInfo.getPassword()) ||
 				UserValidator.isEmailValid(regInfo.getEmail())) {
 			throw new ServiceException("Wrong login or password.");
 		}

@@ -15,16 +15,16 @@
 
 <div class="login">
   <h1>Login</h1>
-    <form method="post">
+    <form name="registrationForm" method="post" action="Controller" autocomplete="off">
         <input type="hidden" name="command" value="registration" />
         <input type="text" name="login" placeholder="username*" required="required" />
         <input type="password" name="password" placeholder="password*" required="required" />
 		<input type="email" name="email" placeholder="email" />
         <button type="submit" class="btn btn-primary btn-block btn-large">Give me my coffee!</button>
+        <div class = "error">
+            <br><p id = "error">${param.message}</p>
+        </div>
     </form>
-</div>
-<div class = "error">
-    <c:out value="${param.message}" />
 </div>
 </body>
 
