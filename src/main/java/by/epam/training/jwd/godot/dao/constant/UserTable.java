@@ -1,4 +1,4 @@
-package by.epam.training.jwd.godot.dao.constants;
+package by.epam.training.jwd.godot.dao.constant;
 
 public interface UserTable {
 

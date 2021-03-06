@@ -4,7 +4,7 @@ import by.epam.training.jwd.godot.bean.SignInInfo;
 import by.epam.training.jwd.godot.bean.RegistrationInfo;
 import by.epam.training.jwd.godot.bean.User;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
-import by.epam.training.jwd.godot.dao.UserDAO;
+import by.epam.training.jwd.godot.dao.UserDao;
 import by.epam.training.jwd.godot.dao.connection.ConnectionPool;
 import by.epam.training.jwd.godot.dao.connection.ConnectionProvider;
 import by.epam.training.jwd.godot.dao.connection.ecxeption.ConnectionPoolException;
@@ -12,11 +12,11 @@ import org.apache.log4j.Logger;
 
 import java.sql.*;
 
-import static by.epam.training.jwd.godot.dao.constants.UserTable.*;
+import static by.epam.training.jwd.godot.dao.constant.UserTable.*;
 
-public class SQLUserDAO implements UserDAO {
+public class UserDaoImpl implements UserDao {
 
-	private static final Logger LOGGER = Logger.getLogger(SQLUserDAO.class);
+	private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class);
 	private static final String FIND_USER = "SELECT * FROM %s WHERE %s = \"%s\" AND %s = \"%s\"";
 	private static final String INSERT_USER = "INSERT INTO %s(%s,%s,%s,%s) values(\"%s\", \"%s\", \"%s\", %d)";
 

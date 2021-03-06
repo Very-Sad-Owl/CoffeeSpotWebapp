@@ -8,8 +8,8 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class SQLUserDAOTest {
-    private SQLUserDAO dao = new SQLUserDAO();
+public class UserDaoImplTest {
+    private UserDaoImpl dao = new UserDaoImpl();
 
     @Test
     public void existingUserLogin() throws DAOException {

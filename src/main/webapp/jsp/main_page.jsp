@@ -53,9 +53,15 @@
 		</div>
 		</nav>
 		</header>
-		<!-- #masthead -->
-			
 		<!-- #content -->
+		<div class = "coffe-types">
+			<table border="2">
+				<c:forEach var="n" items="${requestScope.coffee}">
+					<%--img grid--%>
+					<c:out value="${n.type}" />
+				</c:forEach>
+			</table>
+		</div>
 	</div>
 	<!-- .container -->
 	<footer id="colophon" class="site-footer">

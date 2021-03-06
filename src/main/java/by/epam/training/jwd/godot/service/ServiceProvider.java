@@ -1,6 +1,7 @@
 package by.epam.training.jwd.godot.service;
 
 
+import by.epam.training.jwd.godot.service.impl.CoffeeServiseImpl;
 import by.epam.training.jwd.godot.service.impl.UserServiceImpl;
 
 public final class ServiceProvider {
@@ -10,7 +11,8 @@ public final class ServiceProvider {
 	private ServiceProvider() {}
 	
 	private final UserService userService = new UserServiceImpl();
-	
+	private final CoffeeService coffeeService = new CoffeeServiseImpl();
+
 	public static ServiceProvider getInstance() {
 		return instance;
 	}
@@ -18,5 +20,6 @@ public final class ServiceProvider {
 	public UserService getUserService() {
 		return userService;
 	}
-	
+	public CoffeeService getCoffeeService() {return coffeeService;}
+
 }

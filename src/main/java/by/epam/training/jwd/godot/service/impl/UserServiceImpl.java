@@ -4,8 +4,8 @@ import by.epam.training.jwd.godot.bean.RegistrationInfo;
 import by.epam.training.jwd.godot.bean.User;
 import by.epam.training.jwd.godot.bean.SignInInfo;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
-import by.epam.training.jwd.godot.dao.DAOProvider;
-import by.epam.training.jwd.godot.dao.UserDAO;
+import by.epam.training.jwd.godot.dao.DaoProvider;
+import by.epam.training.jwd.godot.dao.UserDao;
 import by.epam.training.jwd.godot.service.exception.ServiceException;
 import by.epam.training.jwd.godot.service.UserService;
 import by.epam.training.jwd.godot.service.validator.UserValidator;
@@ -15,8 +15,8 @@ public class UserServiceImpl implements UserService {
 
 	public User authorization(SignInInfo info) throws ServiceException {
 
-		DAOProvider provider = DAOProvider.getInstance();
-        UserDAO userDAO = provider.getUserdao();
+		DaoProvider provider = DaoProvider.getInstance();
+        UserDao userDAO = provider.getUserDao();
         
 		User user;
 		try {
@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
 			throw new ServiceException(e.getMessage());
 		}
 
-		DAOProvider provider = DAOProvider.getInstance();
-		UserDAO userDAO = provider.getUserdao();
+		DaoProvider provider = DaoProvider.getInstance();
+		UserDao userDAO = provider.getUserDao();
 
 		try {
 			userDAO.registration(regInfo);
