@@ -9,26 +9,26 @@ public class Coffee implements Serializable {
     private CoffeeType type;
     private String description;
     private double coast;
-    private String img_path;
+    private String imgPath;
 
     public Coffee(){}
 
-    public Coffee(CoffeeType type, String description, double coast, String img_path) {
+    public Coffee(CoffeeType type, String description, double coast, String imgPath) {
         this.type = type;
         this.description = description;
         this.coast = coast;
-        this.img_path = img_path;
+        this.imgPath = imgPath;
     }
 
-    public Coffee(CoffeeType type, String img_path) {
+    public Coffee(CoffeeType type, String imgPath) {
         this.type = type;
-        this.img_path = img_path;
+        this.imgPath = imgPath;
     }
 
-    public Coffee(CoffeeType type, String description, String img_path) {
+    public Coffee(CoffeeType type, String description, String imgPath) {
         this.type = type;
         this.description = description;
-        this.img_path = img_path;
+        this.imgPath = imgPath;
     }
 
     public String getDescription(){
@@ -55,12 +55,12 @@ public class Coffee implements Serializable {
         this.type = type;
     }
 
-    public String getImg_path() {
-        return img_path;
+    public String getImgPath() {
+        return imgPath;
     }
 
-    public void setImg_path(String img_path) {
-        this.img_path = img_path;
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     @Override
@@ -71,12 +71,12 @@ public class Coffee implements Serializable {
         return Double.compare(coffee.getCoast(), getCoast()) == 0 &&
                 getType() == coffee.getType() &&
                 Objects.equals(getDescription(), coffee.getDescription()) &&
-                Objects.equals(getImg_path(), coffee.getImg_path());
+                Objects.equals(getImgPath(), coffee.getImgPath());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getType(), getDescription(), getCoast(), getImg_path());
+        return Objects.hash(getType(), getDescription(), getCoast(), getImgPath());
     }
 
     @Override
@@ -85,7 +85,7 @@ public class Coffee implements Serializable {
                 "type=" + type +
                 ", description='" + description + '\'' +
                 ", coast=" + coast +
-                ", img_path='" + img_path + '\'' +
+                ", imgPath='" + imgPath + '\'' +
                 '}';
     }
 }

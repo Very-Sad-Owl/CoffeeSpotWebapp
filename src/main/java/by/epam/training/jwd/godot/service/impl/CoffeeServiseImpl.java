@@ -19,7 +19,7 @@ public class CoffeeServiseImpl implements CoffeeService {
         CoffeeDao dao = provider.getCoffeeDao();
 
         try {
-            coffeeList.addAll(dao.getAll());
+            coffeeList.addAll(dao.getAllBeverages());
         } catch (DAOException e) {
             throw new ServiceException("Cannot retrieve data");
         }

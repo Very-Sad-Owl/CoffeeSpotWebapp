@@ -8,7 +8,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>GoDot</title>
+<script src="../js/popup.js"></script>
+<jsp:include page="order.jsp" />
 <link rel='stylesheet' href='../css/main_style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='../css/order_style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
 <!-- <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
 </head>
@@ -53,14 +56,24 @@
 		</div>
 		</nav>
 		</header>
-		<!-- #content -->
-		<div class = "coffe-types">
-			<table border="2">
-				<c:forEach var="n" items="${requestScope.coffee}">
-					<%--img grid--%>
-					<c:out value="${n.type}" />
+
+		<div class = "coffee_list">
+			<div class="coffee_type_el">
+				<c:forEach var="n" items="${requestScope.coffee}" varStatus="loop">
+
+					<section class="coffee_element" id = "${loop.index}">
+						<a class="open-button" onclick="openForm('${n.type}')">
+						<img src="${'../'}${n.imgPath}" alt="${n.type}"
+						style="width:100px;height:100px;">
+						<header>
+							<p><c:out value="${n.type}${' - '}${n.coast}" /></p>
+						</header>
+						</a>
+					</section>
+
+					<%--</a>--%>
 				</c:forEach>
-			</table>
+			</div>
 		</div>
 	</div>
 	<!-- .container -->

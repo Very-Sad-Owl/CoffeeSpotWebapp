@@ -9,10 +9,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<%--<%--%>
-		<%--response.sendRedirect("Controller?command=gotoindexpage");--%>
-	<%--%>--%>
+	<%
+		response.sendRedirect("Controller?command=gotoindexpage");
+	%>
 
-	<jsp:forward page="jsp/main_page.jsp"></jsp:forward>
+	<%--<jsp:forward page="jsp/main_page.jsp"></jsp:forward>--%>
 </body>
 </html>

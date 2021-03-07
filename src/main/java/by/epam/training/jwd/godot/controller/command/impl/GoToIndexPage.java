@@ -6,6 +6,7 @@ import by.epam.training.jwd.godot.controller.command.resource.CommandUrlPath;
 import by.epam.training.jwd.godot.service.CoffeeService;
 import by.epam.training.jwd.godot.service.ServiceProvider;
 import by.epam.training.jwd.godot.service.exception.ServiceException;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.util.List;
@@ -17,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 public class GoToIndexPage implements Command {
 
+	private static final Logger LOGGER = Logger.getLogger(GoToIndexPage.class);
+
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		ServiceProvider provider = ServiceProvider.getInstance();
@@ -25,6 +28,7 @@ public class GoToIndexPage implements Command {
 		try {
 			List<Coffee> allCoffee = service.getAllCoffee();
 			request.setAttribute("coffee", allCoffee);
+			LOGGER.info("retrieved: " + allCoffee.size() + "\n");
 		} catch (ServiceException e) {
 			//redirect to error page
 		}

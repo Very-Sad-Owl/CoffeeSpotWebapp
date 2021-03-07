@@ -6,6 +6,6 @@ import by.epam.training.jwd.godot.dao.exception.DAOException;
 import java.util.List;
 
 public interface CoffeeDao {
-    List<Coffee> getAll() throws DAOException;
-    List<Coffee> getAvailable();
+    List<Coffee> getAllBeverages() throws DAOException;
+    List<Coffee> getAvailableBeverages();
 }

@@ -84,6 +84,7 @@ public class ConnectionPool {
         {
             givenAwayConQueue.remove(connection);
             connectionQueue.add(connection);
+            return;
         }
         throw new ConnectionPoolException();
     }
