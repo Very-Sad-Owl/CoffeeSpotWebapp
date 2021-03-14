@@ -13,7 +13,7 @@ public class CommandProvider {
 		commands.put(CommandName.GOTOLOGINATIONPAGE, new GoToLoginationPage());
 		commands.put(CommandName.GOTOREGISTRATIONPAGE, new GoToRegistrationPage());
 		commands.put(CommandName.REGISTRATION, new Registration());
-		commands.put(CommandName.GOTOINDEXPAGE, new GoToIndexPage());
+		commands.put(CommandName.GOTOINDEXPAGE, new GoToMainPage());
 		commands.put(CommandName.LOGOUT, new Logout());
 	}
 	

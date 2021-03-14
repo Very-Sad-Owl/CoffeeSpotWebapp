@@ -73,6 +73,11 @@ a:hover,a:active,a:focus {
 a img {
 	border: 0;
 }
+
+section{
+	padding-left: 50px;
+	display: inline-block;
+}
 /*#coffee_element{*/
 	/*text-align: center;*/
 /*}*/

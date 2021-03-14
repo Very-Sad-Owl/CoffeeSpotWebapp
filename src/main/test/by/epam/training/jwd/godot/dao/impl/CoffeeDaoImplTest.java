@@ -1,6 +1,8 @@
 package by.epam.training.jwd.godot.dao.impl;
 
 import by.epam.training.jwd.godot.bean.coffee.Coffee;
+import by.epam.training.jwd.godot.bean.coffee.CoffeeSize;
+import by.epam.training.jwd.godot.bean.coffee.CoffeeType;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,6 +45,17 @@ public class CoffeeDaoImplTest {
         double actual = (Double)calculateCoast.invoke(dao, arg);
 
         assertEquals(expected, actual, 0.0001);
+    }
+
+    @Test
+    public void getSizes_existingType() throws DAOException {
+        CoffeeType type = CoffeeType.ESPRESSO;
+
+        List<CoffeeSize> sizes = dao.getCoffeeTypeSizes(type);
+
+        for (CoffeeSize el : sizes){
+            System.out.println(el);
+        }
     }
 
 }

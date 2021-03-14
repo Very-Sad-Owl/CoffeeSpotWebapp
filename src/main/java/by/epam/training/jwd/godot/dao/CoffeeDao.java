@@ -1,11 +1,17 @@
 package by.epam.training.jwd.godot.dao;
 
+import by.epam.training.jwd.godot.bean.SeasonType;
 import by.epam.training.jwd.godot.bean.coffee.Coffee;
+import by.epam.training.jwd.godot.bean.coffee.CoffeeSize;
+import by.epam.training.jwd.godot.bean.coffee.CoffeeType;
+import by.epam.training.jwd.godot.bean.coffee.Decoration;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
 
 import java.util.List;
 
 public interface CoffeeDao {
     List<Coffee> getAllBeverages() throws DAOException;
-    List<Coffee> getAvailableBeverages();
+    List<Coffee> getAvailableBeverages() throws DAOException;
+    List<Decoration> getDecorators(SeasonType seasonType) throws DAOException;
+    List<CoffeeSize> getCoffeeTypeSizes(CoffeeType type) throws DAOException;
 }

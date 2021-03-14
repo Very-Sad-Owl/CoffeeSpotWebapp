@@ -2,6 +2,7 @@
     charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 
 <html lang="en-US">
 <head>
@@ -16,6 +17,11 @@
 <!-- <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
 </head>
 <body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
+
+<c:if test="${requestScope.chosen != null}">
+	<script>openForm()</script>
+</c:if>
+
 <div id="page">
 	<div class="container">
 		<header id="masthead" class="site-header">
@@ -60,9 +66,10 @@
 		<div class = "coffee_list">
 			<div class="coffee_type_el">
 				<c:forEach var="n" items="${requestScope.coffee}" varStatus="loop">
-
 					<section class="coffee_element" id = "${loop.index}">
-						<a class="open-button" onclick="openForm('${n.type}')">
+						<%--<a class="open-button" onclick="openForm('${n.type}')">--%>
+						<%--<a class="open-button" href="Controller?command=gotoindexpage&coffee=${fn:toLowerCase(n.type)}">--%>
+						<a class="open-button" href="Controller?command=gotoindexpage&toOrder=${loop.index}">
 						<img src="${'../'}${n.imgPath}" alt="${n.type}"
 						style="width:100px;height:100px;">
 						<header>
@@ -70,8 +77,6 @@
 						</header>
 						</a>
 					</section>
-
-					<%--</a>--%>
 				</c:forEach>
 			</div>
 		</div>
