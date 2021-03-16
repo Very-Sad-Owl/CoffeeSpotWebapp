@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.epam.training.jwd.godot.controller.command.resource.RequestParam.*;
+
 public class GoToIngredientManagementPage implements Command {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,8 +27,8 @@ public class GoToIngredientManagementPage implements Command {
         try {
             List<Ingredient> ingredients = service.getAllIngredients();
             List<String> columns = service.getIngredientColumns();
-            request.setAttribute("ingredient_list", ingredients);
-            request.setAttribute("ingredient_columns", columns);
+            request.setAttribute(INGREDIENTS, ingredients);
+            request.setAttribute(INGREDIENT_COLUMNS, columns);
         } catch (ServiceException e) {
             e.printStackTrace();
         }

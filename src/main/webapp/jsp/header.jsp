@@ -42,7 +42,7 @@
                         </c:if>
                         <c:if test="${sessionScope.auth == false || sessionScope.auth == null}">
                             <li><a href="Controller?command=gotologinationpage"><fmt:message bundle="${loc}" key="locale.login"/></a></li>
-                            <li><a href="Controller?command=gotoregistrationpage"><fmt:message bundle="${loc}" key="locale.rerister"/></a></li>
+                            <li><a href="Controller?command=gotoregistrationpage"><fmt:message bundle="${loc}" key="locale.register"/></a></li>
                         </c:if>
                     </ul>
                 </li>

@@ -11,18 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.epam.training.jwd.godot.controller.command.resource.RequestParam.*;
+
 public class IngredientsManager implements Command {
 
     private static final Logger LOGGER = Logger.getLogger(IngredientsManager.class);
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        String action = request.getParameter(ACTION);
         ServiceProvider provider = ServiceProvider.getInstance();
         CoffeeService service = provider.getCoffeeService();
 
-        if (action.equals("delete")) {
-            String toDelete = request.getParameter("id");
+        if (action.equals(DELETE_ACTION)) {
+            String toDelete = request.getParameter(INGREDIENT_ID);
             if (toDelete != null) {
                 try {
                     if (service.deleteIngredient(Integer.parseInt(toDelete))) {
@@ -34,7 +36,7 @@ public class IngredientsManager implements Command {
                     response.getWriter().print("No data was deleted due to bd error");
                 }
             }
-        } else if (action.equals("update")){
+        } else if (action.equals(UPDATE_ACTION)){
             LOGGER.info("update\n");
         }
 

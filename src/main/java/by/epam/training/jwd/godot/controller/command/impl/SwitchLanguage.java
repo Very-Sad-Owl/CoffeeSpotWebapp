@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static by.epam.training.jwd.godot.controller.command.resource.RequestParam.*;
 import static by.epam.training.jwd.godot.controller.command.resource.SessionAttr.AUTHORIZATION;
+import static by.epam.training.jwd.godot.controller.command.resource.SessionAttr.*;
 
 public class SwitchLanguage implements Command {
 
@@ -17,12 +19,12 @@ public class SwitchLanguage implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String chosenLang = request.getParameter("language");
+        String chosenLang = request.getParameter(CHOSEN_LANGUAGE);
 
         HttpSession session = request.getSession();
 
         if(session != null) {
-            session.setAttribute("locale", chosenLang);
+            session.setAttribute(LOCALE, chosenLang);
         }
         LOGGER.info("prev " + request.getSession().getAttribute("previousUrl") + "\n");
         response.sendRedirect((String) request.getSession().getAttribute("previousUrl"));
