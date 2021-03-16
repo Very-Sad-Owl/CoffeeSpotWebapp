@@ -1,20 +1,16 @@
 package by.epam.training.jwd.godot.dao.impl;
 
+import by.epam.training.jwd.godot.bean.IngredientType;
 import by.epam.training.jwd.godot.bean.SeasonType;
-import by.epam.training.jwd.godot.bean.coffee.Coffee;
-import by.epam.training.jwd.godot.bean.coffee.CoffeeSize;
-import by.epam.training.jwd.godot.bean.coffee.CoffeeType;
-import by.epam.training.jwd.godot.bean.coffee.Decoration;
+import by.epam.training.jwd.godot.bean.coffee.*;
 import by.epam.training.jwd.godot.dao.CoffeeDao;
 import by.epam.training.jwd.godot.dao.connection.ConnectionPool;
 import by.epam.training.jwd.godot.dao.connection.ConnectionProvider;
 import by.epam.training.jwd.godot.dao.connection.ecxeption.ConnectionPoolException;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
+import org.apache.commons.math3.util.Precision;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +29,9 @@ public class CoffeeDaoImpl implements CoffeeDao {
             INGREDIENTS_TABLE, INGREDIENT_SEASON_ID, SEASONS_TABLE, SEASON_TITLE, SeasonType.ANY) + " '%s'))";
     private static final String GET_COFFEE_SIZES = "SELECT %s, %s FROM %s WHERE %s" +
             " = any(SELECT %s from %s where %s = '%s')";
+    private static final String DELETE_INGREDIENT = String.format("DELETE FROM %s WHERE %s = ?", INGREDIENTS_TABLE, INGREDIENTS_ID);
+    private static final String UPDATE_INGREDIENT = String.format("update %s set %s = 1002 where %s = ?", INGREDIENTS_TABLE, INGREDIENT_QUANTITY, INGREDIENTS_ID);
+    private static final String GET_INGREDIENTS = "SELECT ingredients.id, title, quantity, price, img_source, season, type FROM ingredients JOIN seasons on seasons.id = ingredients.season_id  JOIN ingredient_type on ingredient_type.id = ingredients.type_id";
 
     @Override
     public List<Coffee> getAllBeverages() throws DAOException {
@@ -106,6 +105,87 @@ public class CoffeeDaoImpl implements CoffeeDao {
     }
 
     @Override
+    public List<Ingredient> getAllIngredients() throws DAOException {
+        Statement st = null;
+        ResultSet rs = null;
+        ConnectionPool pool = null;
+        Connection con = null;
+
+        List<Ingredient> ingredients = new ArrayList<>();
+
+        try {
+            pool = ConnectionProvider.getConnectionPool();
+            con = pool.takeConnection();
+            st = con.createStatement();
+            rs = st.executeQuery(GET_INGREDIENTS);
+
+            while(rs.next()) {
+                int id = rs.getInt(INGREDIENTS_ID);
+                String title = rs.getString(INGREDIENT_TITLE);
+                double price = rs.getDouble(INGREDIENT_PRICE);
+                String img = rs.getString(INGREDIENT_IMG);
+                int quantity = rs.getInt(INGREDIENT_QUANTITY);
+                String ingredientType = rs.getString(INGREDIENT_TYPE_TITLE);
+                String seasonType = rs.getString(SEASON_TITLE);
+
+                Ingredient ingredient = new Ingredient();
+                ingredient.setIngredientType(IngredientType.valueOf(ingredientType.toUpperCase()));
+                ingredient.setImgSource(img);
+                ingredient.setPrice(price);
+                ingredient.setQuantity(quantity);
+                ingredient.setSeasonType(SeasonType.valueOf(seasonType.toUpperCase()));
+                ingredient.setTitle(title);
+                ingredient.setId(id);
+
+                ingredients.add(ingredient);
+
+            }
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            if (pool != null) {
+                pool.closeConnection(con, st, rs);
+            }
+        }
+        return ingredients;
+    }
+
+    @Override
+    public List<String> getIngredientColumns() throws DAOException {
+        Statement st = null;
+        ResultSet rs = null;
+        ConnectionPool pool = null;
+        Connection con = null;
+
+        List<String> columns = new ArrayList<>();
+
+        try {
+            pool = ConnectionProvider.getConnectionPool();
+            con = pool.takeConnection();
+            st = con.createStatement();
+            rs = st.executeQuery(GET_INGREDIENTS);
+            ResultSetMetaData metaData = rs.getMetaData();
+            int count = metaData.getColumnCount(); //number of column
+            String label;
+
+            for (int i = 1; i <= count; i++) {
+                label = metaData.getColumnLabel(i);
+                if (!label.equals(INGREDIENTS_ID)) {
+                    columns.add(label);
+                }
+            }
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            if (pool != null) {
+                pool.closeConnection(con, st, rs);
+            }
+        }
+        return columns;
+    }
+
+    @Override
     public List<CoffeeSize> getCoffeeTypeSizes(CoffeeType type) throws DAOException {
         Statement st = null;
         ResultSet rs = null;
@@ -154,7 +234,7 @@ public class CoffeeDaoImpl implements CoffeeDao {
             rs = st.executeQuery(String.format(GET_COFFEE_COAST, type.toLowerCase()));
 
             if(rs.next()) {
-                coast = rs.getDouble("coast");
+                coast = Precision.round(rs.getDouble("coast"), 2);
             }
         } catch (SQLException | ConnectionPoolException e) {
             throw new DAOException(e);
@@ -164,5 +244,53 @@ public class CoffeeDaoImpl implements CoffeeDao {
             }
         }
         return coast;
+    }
+
+    @Override
+    public boolean deleteIngredient(int id) throws DAOException {
+        PreparedStatement st = null;
+        ConnectionPool pool = null;
+        Connection con = null;
+        boolean res = false;
+
+        try {
+            pool = ConnectionProvider.getConnectionPool();
+            con = pool.takeConnection();
+            st = con.prepareStatement(DELETE_INGREDIENT);
+            st.setInt(1, id);
+            res = st.executeUpdate() != 0;
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            if (pool != null) {
+                pool.closeConnection(con, st);
+            }
+        }
+        return res;
+    }
+
+    @Override
+    public boolean updateIngredient(Ingredient ingredient) throws DAOException {
+        PreparedStatement st = null;
+        ConnectionPool pool = null;
+        Connection con = null;
+        boolean res = false;
+
+        try {
+            pool = ConnectionProvider.getConnectionPool();
+            con = pool.takeConnection();
+            st = con.prepareStatement(UPDATE_INGREDIENT);
+            st.setInt(1, ingredient.getId());
+            res = st.executeUpdate() != 0;
+
+        } catch (SQLException | ConnectionPoolException e) {
+            throw new DAOException(e);
+        } finally {
+            if (pool != null) {
+                pool.closeConnection(con, st);
+            }
+        }
+        return res;
     }
 }

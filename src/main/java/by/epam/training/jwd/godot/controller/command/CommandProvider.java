@@ -15,6 +15,9 @@ public class CommandProvider {
 		commands.put(CommandName.REGISTRATION, new Registration());
 		commands.put(CommandName.GOTOINDEXPAGE, new GoToMainPage());
 		commands.put(CommandName.LOGOUT, new Logout());
+		commands.put(CommandName.GOTOADMINPAGE, new GoToAdminPage());
+		commands.put(CommandName.GOTOMANAGEINGREDIENTSPAGE, new GoToIngredientManagementPage());
+		commands.put(CommandName.MANAGEINGREDIENTS, new IngredientsManager());
 	}
 	
 	

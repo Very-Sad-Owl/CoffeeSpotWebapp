@@ -41,9 +41,19 @@ public class SigningIn implements Command {
 				return;
 			}
 
-			HttpSession session = request.getSession(true);
-			session.setAttribute(AUTHORIZATION, true);
-			response.sendRedirect(GOTOINDEXPAGE);
+			if (user.getRoleId() == 3){
+				HttpSession session = request.getSession(true);
+				session.setAttribute(AUTHORIZATION, true);
+				response.sendRedirect(GOTOADMINPAGE);
+			} else if (user.getRoleId() == 2){
+				HttpSession session = request.getSession(true);
+				session.setAttribute(AUTHORIZATION, true);
+				response.sendRedirect(GOTOINDEXPAGE);
+			} else {
+				HttpSession session = request.getSession(true);
+				session.setAttribute(AUTHORIZATION, false);
+				response.sendRedirect(GOTOINDEXPAGE);
+			}
 
 		} catch (ServiceException e) {
 			response.sendRedirect(String.format(GOTOLOGINPAGE_WITH_MSG, e.getMessage()));

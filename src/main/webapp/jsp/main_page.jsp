@@ -24,44 +24,7 @@
 
 <div id="page">
 	<div class="container">
-		<header id="masthead" class="site-header">
-		<div class="site-branding">
-			<h1 class="site-title">
-				<a href="Controller?command=gotoindexpage" rel="home">
-					<img alt="Logo" src="../resources/image/logo.png"
-					width="20%" height="20%">
-				</a>
-			</h1>
-			<!-- <h2 class="site-description">Good coffee is never far away!</h2> -->
-		</div>
-		<nav id="site-navigation" class="main-navigation">
-		<button class="menu-toggle">Menu</button>
-		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
-		<div class="menu-menu-1-container">
-			<ul id="menu-menu-1" class="menu">
-				<li><a href="Controller?command=gotoindexpage">Home</a></li>
-				<li><a href="coming soon ..">About</a></li>
-				<li><a href="coming soon ..">Shop</a></li>
-				<li><a href="coming soon ..">Blog</a></li>
-				<li><a href="coming soon ..">Elements</a></li>
-				<li><a href="#">Account</a>
-				<ul class="sub-menu">
-					<c:if test="${sessionScope.auth == true}">
-						<li><a href="Controller?command=logout">Logout</a></li>
-						<li><a href="coming soon ..">Account</a></li>
-					</c:if>
-					<c:if test="${sessionScope.auth == false || sessionScope.auth == null}">
-						<li><a href="Controller?command=gotologinationpage">Login</a></li>
-						<li><a href="Controller?command=gotoregistrationpage">Register</a></li>
-					</c:if>
-
-				</ul>
-				</li>
-				<li><a href="coming soon ..">Contact</a></li>
-			</ul>
-		</div>
-		</nav>
-		</header>
+		<jsp:include page="header.jsp"/>
 
 		<div class = "coffee_list">
 			<div class="coffee_type_el">
@@ -82,14 +45,7 @@
 		</div>
 	</div>
 	<!-- .container -->
-	<footer id="colophon" class="site-footer">
-	<div class="container">
-		<div class="site-info">
-			<h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
-			 <a target="blank" href="https://www.wowthemes.net/">&copy; Good coffee is never far away!</a>
-		</div>
-	</div>	
-	</footer>
+	<jsp:include page="footer.jsp"/>
 	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
 </div>
 <!-- #page -->

@@ -1,10 +1,7 @@
 package by.epam.training.jwd.godot.service.impl;
 
 import by.epam.training.jwd.godot.bean.SeasonType;
-import by.epam.training.jwd.godot.bean.coffee.Coffee;
-import by.epam.training.jwd.godot.bean.coffee.CoffeeSize;
-import by.epam.training.jwd.godot.bean.coffee.CoffeeType;
-import by.epam.training.jwd.godot.bean.coffee.Decoration;
+import by.epam.training.jwd.godot.bean.coffee.*;
 import by.epam.training.jwd.godot.dao.CoffeeDao;
 import by.epam.training.jwd.godot.dao.DaoProvider;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
@@ -64,5 +61,65 @@ public class CoffeeServiseImpl implements CoffeeService {
             throw new ServiceException("Cannot retrieve sizes data");
         }
         return sizesList;
+    }
+
+    @Override
+    public List<Ingredient> getAllIngredients() throws ServiceException {
+        List<Ingredient> ingredientList = new ArrayList<>();
+
+        DaoProvider provider = DaoProvider.getInstance();
+        CoffeeDao dao = provider.getCoffeeDao();
+
+        try {
+            ingredientList.addAll(dao.getAllIngredients());
+        } catch (DAOException e) {
+            throw new ServiceException("Cannot retrieve ingredients data");
+        }
+        return ingredientList;
+    }
+
+    @Override
+    public List<String> getIngredientColumns() throws ServiceException {
+        List<String> ingredientCols = new ArrayList<>();
+
+        DaoProvider provider = DaoProvider.getInstance();
+        CoffeeDao dao = provider.getCoffeeDao();
+
+        try {
+            ingredientCols.addAll(dao.getIngredientColumns());
+        } catch (DAOException e) {
+            throw new ServiceException("Cannot retrieve ingredients data");
+        }
+        return ingredientCols;
+    }
+
+    @Override
+    public boolean deleteIngredient(int id) throws ServiceException {
+        boolean res = false;
+
+        DaoProvider provider = DaoProvider.getInstance();
+        CoffeeDao dao = provider.getCoffeeDao();
+
+        try {
+            res = dao.deleteIngredient(id);
+        } catch (DAOException e) {
+            throw new ServiceException("Cannot retrieve ingredients data");
+        }
+        return res;
+    }
+
+    @Override
+    public boolean updateIngredient(Ingredient ingredient) throws ServiceException {
+        boolean res = false;
+
+        DaoProvider provider = DaoProvider.getInstance();
+        CoffeeDao dao = provider.getCoffeeDao();
+
+        try {
+            res = dao.updateIngredient(ingredient);
+        } catch (DAOException e) {
+            throw new ServiceException("Cannot update ingredients data");
+        }
+        return res;
     }
 }

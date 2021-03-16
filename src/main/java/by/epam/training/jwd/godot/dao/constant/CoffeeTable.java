@@ -8,10 +8,11 @@ public interface CoffeeTable {
     String IMG = "img_source";
 
     String INGREDIENTS_TABLE = "ingredients";
+    String INGREDIENTS_ID = "id";
     String INGREDIENT_TITLE = "title";
     String INGREDIENT_PRICE = "price";
     String INGREDIENT_QUANTITY = "quantity";
-    String INGREDIENT_TYPE_ID = "img_source";
+    String INGREDIENT_TYPE_ID = "type_id";
     String INGREDIENT_SEASON_ID = "season_id";
     String INGREDIENT_IMG = "img_source";
 
@@ -23,4 +24,6 @@ public interface CoffeeTable {
     String SIZE_VOL = "size";
     String SIZE_INCREMENT = "increment";
     String SIZE_COFFE_TYPE_ID = "coffee_type_id";
+
+    String INGREDIENT_TYPE_TITLE = "type";
 }

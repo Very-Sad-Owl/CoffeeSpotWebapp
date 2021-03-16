@@ -395,10 +395,10 @@ a:active,a:focus {
 	text-decoration: none;
 }
 /*--------------------------------------------------------------6.2 Logo and Title--------------------------------------------------------------*/
-.site-branding {
-	margin-bottom:1em;
-	text-align:center;
-}
+/*.site-branding {*/
+	/*margin-bottom:1em;*/
+	/*text-align:center;*/
+/*}*/
 .site-title {
 	font-family:'Quattrocento Sans',sans-serif;
 	font-size:60px;
@@ -409,9 +409,9 @@ a:active,a:focus {
 	margin-bottom:20px;
 	text-transform:uppercase;
 }
-.site-title a {
-		text-decoration:none;
-}
+/*.site-title a {*/
+		/*text-decoration:none;*/
+/*}*/
 .site-description {
 	font-size:14px;
 	font-style:italic;

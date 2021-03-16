@@ -1,9 +1,11 @@
 package by.epam.training.jwd.godot.bean.coffee;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Decoration {
+public class Decoration implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String title;
     private double coast;
     private String imgPath;

@@ -14,13 +14,31 @@
     <div class = "decorator_list">
       <div class="decoration_el">
         <c:forEach var="n" items="${requestScope.decoration}" varStatus="loop">
-          <section class="decoration_element" id = "${loop.index}" onclick = "addDecor(${loop.index})">
+
+          <c:if test="${n.title == 'sugar'}">
+            <section class="decoration_element" id = "${loop.index}">
               <img src="${'../'}${n.imgPath}" alt="${n.title}"
                    style="width:60px;height:60px;">
               <header>
                 <p><c:out value="${n.title}${' - '}${n.coast}" /></p>
               </header>
+              <div class="slider">
+                <%--<input type="range" min="0" max="5" value="0" class="slider" id="sugar_slider" onchange = "addDecor(${n.coast}, ${loop.index})">--%>
+                <input type="range" min="0" max="5" value="0" class="slider" id="sugar_slider" onchange = "addDecor(${loop.index})">
+              </div>
+            </section>
+          </c:if>
+
+          <c:if test="${n.title != 'sugar'}">
+            <%--<section class="decoration_element" id = "${"decor"}${loop.index}" onclick = "addDecor(${n.coast}, ${loop.index})">--%>
+            <section class="decoration_element" id = "${"decor"}${loop.index}" onclick = "addDecor(${loop.index})">
+            <img src="${'../'}${n.imgPath}" alt="${n.title}"
+                 style="width:60px;height:60px;">
+            <header>
+              <p><c:out value="${n.title}${' - '}${n.coast}" /></p>
+            </header>
           </section>
+          </c:if>
         </c:forEach>
       </div>
     </div>
@@ -28,20 +46,33 @@
     <div class = "size_list">
       <div class="size_el">
         <c:forEach var="n" items="${requestScope.sizes}" varStatus="loop">
-          <section class="available_size_element" id = "${loop.index}">
-            <header>
-              <p id = "total_coast"><c:out value="${n.volume}${'ml'}" /></p>
-            </header>
-          </section>
+          <%--<section class="available_size_element" id = "${"size"}${loop.index}" onclick="setSize(${n.increment}, ${loop.index})">--%>
+            <%--<header>--%>
+              <%--<p id = "total_coast"><c:out value="${n.volume}${'ml'}" /></p>--%>
+            <%--</header>--%>
+          <%--</section>--%>
+          <c:choose>
+            <c:when test="${loop.index == 0}">
+              <input type="radio" id = "${"size"}${loop.index}"
+                     name="size" value="${n.increment}" checked onclick="setSize(this)">
+              <label for="${"size"}${loop.index}">${n.volume}${'ml'}</label>
+            </c:when>
+            <c:when test="${loop.index != 0}">
+              <input type="radio" id = "${"size"}${loop.index}"
+                     name="size" value="${n.increment}" onclick="setSize(this)">
+              <label for="${"size"}${loop.index}">${n.volume}${'ml'}</label>
+            </c:when>
+          </c:choose>
+
         </c:forEach>
       </div>
     </div>
 
     <div class="total_coast">
-      <span id = "coast"><c:out value="${'Total coast: '}${requestScope.chosen.coast}" /></span>
+      <span id = "coast"><c:out value="${requestScope.chosen.coast}"/></span>
     </div>
 
     <button type="submit" class="btn">Submit</button>
-    <button type="button" class="btn cancel" onclick="closeForm()">Cancel</button>
+    <a href="Controller?command=gotoindexpage"><button type="button" class="btn cancel" onclick="closeForm()">Cancel</button></a>
   </form>
 </div>
