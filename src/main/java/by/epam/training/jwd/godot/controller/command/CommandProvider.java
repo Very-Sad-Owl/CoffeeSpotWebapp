@@ -18,6 +18,7 @@ public class CommandProvider {
 		commands.put(CommandName.GOTOADMINPAGE, new GoToAdminPage());
 		commands.put(CommandName.GOTOMANAGEINGREDIENTSPAGE, new GoToIngredientManagementPage());
 		commands.put(CommandName.MANAGEINGREDIENTS, new IngredientsManager());
+		commands.put(CommandName.SWITCHLANGUAGE, new SwitchLanguage());
 	}
 	
 	

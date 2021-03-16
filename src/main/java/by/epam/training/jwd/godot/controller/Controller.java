@@ -2,6 +2,7 @@ package by.epam.training.jwd.godot.controller;
 
 import by.epam.training.jwd.godot.controller.command.Command;
 import by.epam.training.jwd.godot.controller.command.CommandProvider;
+import by.epam.training.jwd.godot.controller.command.resource.CommandUrlPath;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -26,6 +27,13 @@ public class Controller extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String callingUrl = request.getHeader("referer");
+		if (callingUrl == null){
+			callingUrl = CommandUrlPath.GOTOINDEXPAGE;
+		}
+		String callingCommand = callingUrl.replaceFirst("(.)*/", "");
+		LOGGER.info(callingCommand + "\n");
+		request.getSession().setAttribute("previousUrl", callingCommand);
 		process(request, response);
 	}
 

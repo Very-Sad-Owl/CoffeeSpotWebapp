@@ -3,19 +3,26 @@
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <html lang="en-US">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GoDot</title>
-<script src="../js/popup.js"></script>
-<jsp:include page="order.jsp" />
-<link rel='stylesheet' href='../css/main_style.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='../css/order_style.css' type='text/css' media='all'/>
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
-<!-- <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>GoDot</title>
+		<script src="../js/popup.js"></script>
+		<jsp:include page="order.jsp" />
+		<link rel='stylesheet' href='../css/main_style.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='../css/order_style.css' type='text/css' media='all'/>
+		<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+		<!-- <link rel='stylesheet' href='css/easy-responsive-shortcodes.css' type='text/css' media='all'/> -->
+
+		<fmt:setLocale value = "${sessionScope.locale}"/>
+		<fmt:setBundle basename="localization.locale" var="loc"/>
+		
+	</head>
+	
+	
 <body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php">
 
 <c:if test="${requestScope.chosen != null}">

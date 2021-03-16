@@ -15,5 +15,5 @@ public interface CommandUrlPath {
     String GOTOREGISTRATIONPAGE_WITH_MSG = "Controller?command=gotoregistrationpage&message=%s";
     String GOTOADMINPAGE = "Controller?command=gotoadminpage";
     String MANAGE_INGREDIENTS = "Controller?command=manageingredients";
-    //String ADDORDERPOS = "Controller?command=addOrderPosition";
+    String SWITCHLANGUAGE = "Controller?command=switchlanguage";
 }
