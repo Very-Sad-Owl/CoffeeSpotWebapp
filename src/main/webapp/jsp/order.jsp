@@ -78,6 +78,6 @@
 
     <%--<button type="submit" class="btn"><fmt:message bundle="${loc}" key="local.about"/></button>--%>
     <button type="submit" class="btn">Submit</button>
-    <a href="Controller?command=gotoindexpage"><button type="button" class="btn cancel" onclick="closeForm()">Cancel</button></a>
+    <a href="Controller?command=gotoindexpage"><button type="button" class="btn_cancel" onclick="closeForm()">Cancel</button></a>
   </form>
 </div>

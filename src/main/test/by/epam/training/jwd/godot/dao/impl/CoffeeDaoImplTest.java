@@ -1,8 +1,11 @@
 package by.epam.training.jwd.godot.dao.impl;
 
+import by.epam.training.jwd.godot.bean.IngredientType;
+import by.epam.training.jwd.godot.bean.SeasonType;
 import by.epam.training.jwd.godot.bean.coffee.Coffee;
 import by.epam.training.jwd.godot.bean.coffee.CoffeeSize;
 import by.epam.training.jwd.godot.bean.coffee.CoffeeType;
+import by.epam.training.jwd.godot.bean.coffee.Ingredient;
 import by.epam.training.jwd.godot.dao.exception.DAOException;
 import org.junit.Before;
 import org.junit.Test;
@@ -56,6 +59,16 @@ public class CoffeeDaoImplTest {
         for (CoffeeSize el : sizes){
             System.out.println(el);
         }
+    }
+
+    @Test
+    public void updateIngredient() throws DAOException {
+        Ingredient ingredient = new Ingredient("dd", 1, 1, IngredientType.valueOf("DECORATION"),
+                "ddd", SeasonType.valueOf("SUMMER"));
+
+        boolean res = dao.updateIngredient(ingredient, "test");
+
+        assertTrue(res);
     }
 
 }

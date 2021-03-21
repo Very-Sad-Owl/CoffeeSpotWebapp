@@ -10,6 +10,6 @@ public interface RequestParam {
     String ACTION = "action";
     String DELETE_ACTION = "delete";
     String UPDATE_ACTION = "update";
-    String INGREDIENT_ID = "id";
+    String INGREDIENT_TITLE = "title";
     String CHOSEN_LANGUAGE = "language";
 }

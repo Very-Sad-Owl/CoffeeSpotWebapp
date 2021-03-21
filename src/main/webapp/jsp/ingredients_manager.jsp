@@ -8,8 +8,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <link rel='stylesheet' href='../css/table_style.css' type='text/css' media='all'/>
 <link rel='stylesheet' href='../css/logo_style.css' type='text/css' media='all'/>
+<link rel='stylesheet' href='../css/floating_btn_style.css' type='text/css' media='all'/>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript" src="../js/scripts.js"></script>
 <script type="text/javascript" src="../js/ingredient_management.js"></script>
 <jsp:include page="edit_ingredient_form.jsp" />
+<jsp:include page="add_ingredient_form.jsp" />
 <jsp:include page="confirmation_modal.jsp" />
 
 <html>
@@ -20,5 +24,6 @@
 
     <jsp:include page="logo.jsp"/>
     <jsp:include page="table.jsp"/>
+    <div class="fab" onclick="openAddForm()"> + </div>
 </body>
 </html>

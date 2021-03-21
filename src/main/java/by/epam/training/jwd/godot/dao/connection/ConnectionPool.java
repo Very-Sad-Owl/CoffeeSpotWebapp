@@ -59,6 +59,7 @@ public class ConnectionPool {
     public void dispose() {
         clearConnectionQueue();
     }
+
     private void clearConnectionQueue() {
         try {
             closeConnectionsQueue(givenAwayConQueue);

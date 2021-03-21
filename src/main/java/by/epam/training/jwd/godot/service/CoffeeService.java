@@ -12,7 +12,8 @@ public interface CoffeeService {
     List<CoffeeSize> getSizes(CoffeeType type) throws ServiceException;
     List<Ingredient> getAllIngredients() throws ServiceException;
     List<String> getIngredientColumns() throws ServiceException;
-    boolean deleteIngredient(int id) throws ServiceException;
-    boolean updateIngredient(Ingredient ingredient) throws ServiceException;
+    boolean deleteIngredient(String title) throws ServiceException;
+    boolean updateIngredient(Ingredient ingredient, String originalTitle) throws ServiceException;
+    boolean addIngredient(Ingredient ingredient) throws ServiceException;
 
 }

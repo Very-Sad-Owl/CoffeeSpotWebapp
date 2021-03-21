@@ -13,6 +13,7 @@ public interface CoffeeDao {
     List<CoffeeSize> getCoffeeTypeSizes(CoffeeType type) throws DAOException;
     List<Ingredient> getAllIngredients() throws DAOException;
     List<String> getIngredientColumns() throws DAOException;
-    boolean deleteIngredient(int id) throws DAOException;
-    boolean updateIngredient(Ingredient ingredient) throws DAOException;
+    boolean deleteIngredient(String title) throws DAOException;
+    boolean updateIngredient(Ingredient ingredient, String originalTitle) throws DAOException;
+    boolean addIngredient(Ingredient ingredient) throws DAOException;
 }

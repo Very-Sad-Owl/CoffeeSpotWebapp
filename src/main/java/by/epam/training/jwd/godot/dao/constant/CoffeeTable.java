@@ -18,6 +18,7 @@ public interface CoffeeTable {
 
     String SEASONS_TABLE = "seasons";
     String SEASON_TITLE = "season";
+    String SEASON_ID = "id";
 
     String SIZES_TABLE = "sizes";
     String SIZE_ID = "id";
@@ -26,4 +27,6 @@ public interface CoffeeTable {
     String SIZE_COFFE_TYPE_ID = "coffee_type_id";
 
     String INGREDIENT_TYPE_TITLE = "type";
+    String INGREDIENT_TYPE_TABLE = "ingredient_type";
+
 }

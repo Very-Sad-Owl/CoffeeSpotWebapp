@@ -23,7 +23,7 @@
     </thead>
     <tbody>
     <c:forEach var="n" items="${requestScope.ingredient_list}" varStatus="loop">
-        <tr>
+        <tr id="${n.title}">
             <td>${n.title}</td>
             <td>${n.ingredientType}</td>
             <td>${n.seasonType}</td>
@@ -41,16 +41,24 @@
                             <%--'price':'${n.price}',--%>
                             <%--'quantity':'${n.quantity}'--%>
                             <%--})--%>
-                            <button type="button" class="edit_ingr"
-                             onclick="openEditForm('${n.title}','${n.ingredientType}','${n.seasonType}','${n.quantity}','${n.price}')">
+                        <button type="button" class="edit_ingr"
+                             onclick="openEditForm('${n.title}','${n.ingredientType}','${n.seasonType}','${n.quantity}','${n.price}', '${n.imgSource}')">
                                 <fmt:message bundle="${loc}" key="locale.edit.btn"/>
-                            </button>
-                    <button type="button" class="delete_ingr" onclick="deleteIngredient('${n.id}')">
-                        <fmt:message bundle="${loc}" key="locale.delete.btn"/>
-                    </button>
+                        </button>
+                        <button type="button" class="delete_ingr" onclick="deleteIngredient('${n.title}')">
+                            <fmt:message bundle="${loc}" key="locale.delete.btn"/>
+                        </button>
+                        <%--<form action="Controller" autocomplete="off" method="post">--%>
+                            <%--<input name = "command" value="manageingredients" type="hidden"/>--%>
+                            <%--<input name = "action" value="delete" type="hidden"/>--%>
+                            <%--<input type="submit" name="delete_btn" value="<fmt:message bundle="${loc}" key="locale.delete.btn"/>" />--%>
+                        <%--</form>--%>
+
                 </div>
             </th>
         </tr>
     </c:forEach>
     </tbody>
 </table>
+
+

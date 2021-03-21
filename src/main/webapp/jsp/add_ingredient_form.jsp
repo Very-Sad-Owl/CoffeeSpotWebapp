@@ -10,32 +10,30 @@
         type="text/javascript"></script>
 <script type="text/javascript" src="../js/scripts.js"></script>
 
-<div class="edit_ingredient_popup" id = "edit_ingredient_popup">
+<div class="add_ingredient_popup" id = "add_ingredient_popup">
   <h1>Edit</h1>
-    <form class="edit_ingredient" id="edit_ingredient" onsubmit="return onIngrdientUpdate(this)" method="post">
-
-        <input id = "original_ingr_title" name="orig_title" type="hidden"/>
+    <form class="add_ingredient" id="add_ingredient" onsubmit="return onAddIngredietnt(this)" method="post">
 
         <label for="ingr_title">Title</label>
-        <input id = "ingr_title" type="text" name="title" placeholder="ingr_title"/>
+        <input id = "ingr_title" type="text" name="title" placeholder="ingr_title" required/>
 
         <label for="ingr_type">Ingredient type</label>
-        <input id = "ingr_type" type="text" name="ingr_type" placeholder="ingr_type"/>
+        <input id = "ingr_type" type="text" name="ingr_type" placeholder="ingr_type" required/>
 
         <label for="ingr_season_type">For season</label>
-		<input id = "ingr_season_type" type="text" name="season_type" placeholder="season_type"/>
+        <input id = "ingr_season_type" type="text" name="season_type" placeholder="season_type" required/>
 
         <label for="ingr_price">Price</label>
-		<input id = "ingr_price" type="number" step="0.01" name="price" placeholder="price" />
+        <input id = "ingr_price" type="number" step="0.01" name="price" placeholder="price" required/>
 
         <label for="ingr_quantity">Quantity</label>
-		<input id = "ingr_quantity" type="number" name="quantity" placeholder="quantity" />
+        <input id = "ingr_quantity" type="number" name="quantity" placeholder="quantity" required/>
 
         <label for="ingr_img">Image source</label>
-		<input id = "ingr_img" type="text" name="img" placeholder="image" />
+        <input id = "ingr_img" type="text" name="img" placeholder="image" required/>
 
         <button type="submit" id = "submit_changes" class="btn ok">Submit</button>
-        <button type="button" id="cancel_changes" class="btn cancel" onclick="closeEditForm()">Cancel</button>
+        <button type="button" id="cancel_changes" class="btn cancel" onclick="closeAddForm()">Cancel</button>
         <div class = "error">
             <%--<br><p id = "error">${param.message}</p>--%>
         </div>

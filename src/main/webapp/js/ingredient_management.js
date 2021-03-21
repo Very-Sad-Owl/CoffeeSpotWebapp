@@ -1,32 +1,24 @@
-// function openForm(jsonStr) {
-function openEditForm(title, itype, stype, quantity, price) {
-//    var params = JSON.parse(jsonStr);
-    //alert(jsonStr);
-    document.getElementById("edit_ingredient_form").style.display = "block";
+function openAddForm() {
+    document.getElementById("add_ingredient_popup").style.display = "block";
+}
+function openEditForm(title, itype, stype, quantity, price, img) {
+    document.getElementById("edit_ingredient_popup").style.display = "block";
 
-    // document.getElementById("ingr_title").value = params["title"];
-    // document.getElementById("ingr_type").value = params["ingredientType"];
-    // document.getElementById("ingr_season_type").value = params["seasonType"];
-    // document.getElementById("ingr_price").value = params["price"];
-    // document.getElementById("ingr_quantity").value = params["quantity"];
-
+    document.getElementById("original_ingr_title").value = title;
     document.getElementById("ingr_title").value = title;
     document.getElementById("ingr_type").value = itype;
     document.getElementById("ingr_season_type").value = stype;
     document.getElementById("ingr_price").value = price;
     document.getElementById("ingr_quantity").value = quantity;
+    document.getElementById("ingr_img").value = img;
 }
 
-// function checkConfirmation(toDelete) {
-//     document.getElementById("confirmation_modal").style.display = "block";
-//     document.getElementsByClassName("toDelete").textContent = toDelete;
-//     document.getElementById("cancelbtn").formAction = "document.getElementById(\"confirmation_modal\").style.display = \"none\";";
-//     document.getElementById("deletebtn").formAction = "deleteIngredient("+toDelete+")";
-//     //deleteIngredient(toDelete);
-// }
+function closeEditForm() {
+    document.getElementById("edit_ingredient_popup").style.display = "none";
+}
 
-function closeForm() {
-    document.getElementById("edit_ingredient_form").style.display = "none";
+function closeAddForm() {
+    document.getElementById("add_ingredient_popup").style.display = "none";
 }
 
 function getXmlHttp(){
@@ -46,11 +38,10 @@ function getXmlHttp(){
     return xmlhttp;
 }
 
-function deleteIngredient(id) {
-    // document.getElementById("confirmation_modal").style.display = "none";
+function deleteIngredient(title) {
     var urlPattern;
     var xmlhttp = getXmlHttp();
-    urlPattern = "Controller?command=manageingredients&action=delete&id="+id;
+    urlPattern = "Controller?command=manageingredients&action=delete&title="+title;
 
     xmlhttp.open("POST", urlPattern, true);
     xmlhttp.onreadystatechange = function()
@@ -60,6 +51,8 @@ function deleteIngredient(id) {
             if (xmlhttp.status == 200)
             {
                 alert(xmlhttp.responseText);
+                var row = document.getElementById(title);
+                row.parentNode.removeChild(row);
             }
             else
             {
@@ -72,44 +65,35 @@ function deleteIngredient(id) {
 
 }
 
-function onIngrdientUpdate() {
+function onIngrdientUpdate(f) {
+    $.ajax({
+        url : 'Controller?command=manageingredients&action=update',     // URL - сервлет
+        data: $("#edit_ingredient").serialize(),
+        success : function(response) {
+            alert(response);
+            closeForm();
+        },
+        error: function(response){
+            alert('request failed');
+        }
+    });
 
-    // $("#submit_changes").on('submit',(function(e){
-    //     e.preventDefault();
-    //     alert("hey");
-    //     $.ajax({
-            // url: "Servlet Path",
-            // type: "POST",
-            // data:  new FormData(this),
-            // contentType: false,
-            // cache: false,
-            // processData:false,
-            // success: function(data){
-            //     alert(data);
-            // },
-            // error: function(){
-            //     alert("error");
-            // }
-    //     })
-    // }));
-
-    // $(document).ready(function() {
-    //     $('#submit_changes').click(function(){
-    //         alert('#editIngredientForm').serialize();
-    //         $.ajax({
-    //             type:"POST",
-    //             url : "Controller?command=manageingredients&action=update",
-    //             data:$('#editIngredientForm').serialize() ,
-    //             dataType: 'json',
-    //             success : function(data){
-    //                 //doing stuff
-    //                 //end success
-    //             }//,
-    //             // always: function() {
-    //             //     //submit form !!!
-    //             //     $("#formtopost").submit();
-    //             // }
-    //         });
-    //     });
-    // });
+    return false;
 }
+
+function onAddIngredietnt(f) {
+    $.ajax({
+        url : 'Controller?command=manageingredients&action=add',
+        data: $("#add_ingredient").serialize(),
+        success : function(response) {
+            alert(response);
+            closeForm();
+        },
+        error: function(response){
+            alert('request failed');
+        }
+    });
+
+    return false;
+}
+

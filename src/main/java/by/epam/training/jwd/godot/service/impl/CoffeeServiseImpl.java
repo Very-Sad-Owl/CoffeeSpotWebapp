@@ -94,14 +94,14 @@ public class CoffeeServiseImpl implements CoffeeService {
     }
 
     @Override
-    public boolean deleteIngredient(int id) throws ServiceException {
+    public boolean deleteIngredient(String title) throws ServiceException {
         boolean res = false;
 
         DaoProvider provider = DaoProvider.getInstance();
         CoffeeDao dao = provider.getCoffeeDao();
 
         try {
-            res = dao.deleteIngredient(id);
+            res = dao.deleteIngredient(title);
         } catch (DAOException e) {
             throw new ServiceException("Cannot retrieve ingredients data");
         }
@@ -109,16 +109,31 @@ public class CoffeeServiseImpl implements CoffeeService {
     }
 
     @Override
-    public boolean updateIngredient(Ingredient ingredient) throws ServiceException {
+    public boolean updateIngredient(Ingredient ingredient, String originalTitle) throws ServiceException {
         boolean res = false;
 
         DaoProvider provider = DaoProvider.getInstance();
         CoffeeDao dao = provider.getCoffeeDao();
 
         try {
-            res = dao.updateIngredient(ingredient);
+            res = dao.updateIngredient(ingredient, originalTitle);
         } catch (DAOException e) {
             throw new ServiceException("Cannot update ingredients data");
+        }
+        return res;
+    }
+
+    @Override
+    public boolean addIngredient(Ingredient ingredient) throws ServiceException {
+        boolean res = false;
+
+        DaoProvider provider = DaoProvider.getInstance();
+        CoffeeDao dao = provider.getCoffeeDao();
+
+        try {
+            res = dao.addIngredient(ingredient);
+        } catch (DAOException e) {
+            throw new ServiceException("Cannot insert ingredients data");
         }
         return res;
     }
